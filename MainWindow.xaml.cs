@@ -35,6 +35,8 @@ namespace Kajak_Kenu_Grafikus
             for (int i = 0; i < 60; i++) Perc.Items.Add(i);
 
             foreach (var kolcsonzes in kolcsonzesek) f13.Items.Add(kolcsonzes.ToString());
+
+            KolcsonzesekMara.Visibility = Visibility.Hidden;
         }
 
         private void Keres_Click(object sender, RoutedEventArgs e)
@@ -47,6 +49,25 @@ namespace Kajak_Kenu_Grafikus
         private void NapiBevetel_Click(object sender, RoutedEventArgs e)
         {
             NapiBevetelOsszeg.Content = kolcsonzesek.Sum(k => k.MegkezdettFelOrak()) * 1500 + " Ft";
+        }
+
+        private void Statisztika_Click(object sender, RoutedEventArgs e)
+        {
+            var Adatok = kolcsonzesek.OrderBy(k => k.HajoAzonosito).GroupBy(k => k.HajoAzonosito).ToDictionary(k => k.Key, k => k.Count());
+            using StreamWriter sw = new(
+                path: @"../../../src/statisztika.txt",
+                append: false);
+            foreach (var item in Adatok)
+            {
+                sw.WriteLine($"{item.Key} - {item.Value}");
+                KolcsonzesekMara.Items.Add(item);
+            }
+            KolcsonzesekMara.Visibility = Visibility.Visible;
+        }
+
+        private bool HajoKeres_Click(object sender, RoutedEventArgs e)
+        {
+            return kolcsonzesek.Exists(k => k.HajoAzonosito.Equals(Azon.Text) && k.HajoTipusa.Equals(Tipus.Text) && k.SzemelyekSzama.Equals(Személyes));
         }
     }
 }
