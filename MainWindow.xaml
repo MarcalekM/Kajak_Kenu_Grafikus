@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kajak_Kenu_Grafikus"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid x:Name="Kolcsonzesek_Grid" Margin="14,20,14,217">
+        Title="MainWindow" Height="611" Width="806">
+    <Grid Margin="0,0,0,-6">
+        <DataGrid x:Name="Kolcsonzesek_Grid" Margin="14,20,14,383">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nev" Binding="{Binding Nev}"/>
                 <DataGridTextColumn Header="Hajó Azonositó" Binding="{Binding HajoAzonosito}"/>
@@ -22,7 +22,7 @@
         <ComboBox x:Name="Ora" HorizontalAlignment="Left" Margin="14,222,0,0" VerticalAlignment="Top" Width="74"/>
         <ComboBox x:Name="Perc" HorizontalAlignment="Left" Margin="93,222,0,0" VerticalAlignment="Top" Width="74"/>
         <Button x:Name="Keres" Content="Keres" HorizontalAlignment="Left" Margin="172,223,0,0" VerticalAlignment="Top" Click="Keres_Click"/>
-        <DataGrid x:Name="KeresesEredmeny" Margin="15,248,200,39">
+        <DataGrid x:Name="KeresesEredmeny" Margin="15,248,200,102">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nev" Binding="{Binding Nev}"/>
                 <DataGridTextColumn Header="Hajó Azonositó" Binding="{Binding HajoAzonosito}"/>
@@ -32,5 +32,8 @@
                 <DataGridTextColumn Header="Visszahozatal perce" Binding="{Binding VisszahozatalPerc}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <ListBox x:Name="f13" Margin="611,248,14,102"/>
+        <Button x:Name="NapiBevetel" Content="Napi bevétel" HorizontalAlignment="Left" Margin="16,504,0,0" VerticalAlignment="Top" Click="NapiBevetel_Click"/>
+        <Label x:Name="NapiBevetelOsszeg" Content="" HorizontalAlignment="Left" Margin="93,501,0,0" VerticalAlignment="Top" Width="112"/>
     </Grid>
 </Window>

@@ -25,9 +25,19 @@ namespace Kajak_Kenu_Grafikus
             else return false;
         }
 
-        public string KolcsonzesIdotartam()
+        public int KolcsonzesIdotartam()
         {
-            return $"{VisszahozatalOra - ElvitelOra} óra {VisszahozatalPerc - ElvitelPerc} perc";
+            return (((VisszahozatalOra - ElvitelOra) * 60) + (VisszahozatalPerc - ElvitelPerc));
+        }
+
+        public int MegkezdettFelOrak()
+        {
+            return ((KolcsonzesIdotartam() % 30 != 0) ? KolcsonzesIdotartam() / 30 + 1 : KolcsonzesIdotartam() / 30);
+        }
+
+        public override string ToString()
+        {
+            return $"{HajoAzonosito} - {KolcsonzesIdotartam()} - {MegkezdettFelOrak()}";
         }
 
         public Kolcsonzes(string sor)

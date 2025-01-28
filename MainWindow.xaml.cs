@@ -33,6 +33,8 @@ namespace Kajak_Kenu_Grafikus
 
             for(int i = 0; i < 24; i++) Ora.Items.Add(i);
             for (int i = 0; i < 60; i++) Perc.Items.Add(i);
+
+            foreach (var kolcsonzes in kolcsonzesek) f13.Items.Add(kolcsonzes.ToString());
         }
 
         private void Keres_Click(object sender, RoutedEventArgs e)
@@ -40,6 +42,11 @@ namespace Kajak_Kenu_Grafikus
             string ido = $"{Ora.Text}:{Perc.Text}";
             var eredmeny = kolcsonzesek.FindAll(k => k.VizenVan(ido)).ToList();
             foreach (var item in eredmeny) KeresesEredmeny.Items.Add(item);
+        }
+
+        private void NapiBevetel_Click(object sender, RoutedEventArgs e)
+        {
+            NapiBevetelOsszeg.Content = kolcsonzesek.Sum(k => k.MegkezdettFelOrak()) * 1500 + " Ft";
         }
     }
 }
