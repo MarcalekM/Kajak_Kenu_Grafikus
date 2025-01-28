@@ -65,19 +65,22 @@ namespace Kajak_Kenu_Grafikus
             KolcsonzesekMara.Visibility = Visibility.Visible;
         }
 
-        private bool HajoKeres_Click(object sender, RoutedEventArgs e)
+        public bool HajotKeres_Click(object sender, RoutedEventArgs e)
         {
-            return kolcsonzesek.Exists(k => k.HajoAzonosito.Equals(Azon.Text) && k.HajoTipusa.Equals(Tipus.Text) && k.SzemelyekSzama.Equals(Személyes));
+            var letezik = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(Azon.Text) && k.HajoTipusa.Equals(Tipus.Text) && k.SzemelyekSzama.Equals(Személyes)).ToList();
+            bool eredmeny = (letezik.Count() > 0 ? true : false);
+            return eredmeny;
         }
 
         private void SerultKeres_Click(object sender, RoutedEventArgs e)
         {
-            var serult = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(SerultAzon));
-            if(serult != null)
+            var serult = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(SerultAzon.Text)).ToList();
+            if(serult.Count() != 0)
             {
                 using StreamWriter sw = new(
-                    path: @$"../../../src/rongalas_{SerultAzon}.txt",
+                    path: $@"../../../src/rongalas_{SerultAzon.Text}.txt",
                     append: false);
+                foreach (var item in serult) sw.WriteLine($"{item.Nev} - {item.KolcsonzesIdotartam()}");
             }
         }
     }
