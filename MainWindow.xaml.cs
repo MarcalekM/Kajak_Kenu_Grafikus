@@ -37,7 +37,9 @@ namespace Kajak_Kenu_Grafikus
 
         private void Keres_Click(object sender, RoutedEventArgs e)
         {
-
+            string ido = $"{Ora.Text}:{Perc.Text}";
+            var eredmeny = kolcsonzesek.FindAll(k => k.VizenVan(ido)).ToList();
+            foreach (var item in eredmeny) KeresesEredmeny.Items.Add(item);
         }
     }
 }

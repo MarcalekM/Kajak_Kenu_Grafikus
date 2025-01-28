@@ -22,5 +22,15 @@
         <ComboBox x:Name="Ora" HorizontalAlignment="Left" Margin="14,222,0,0" VerticalAlignment="Top" Width="74"/>
         <ComboBox x:Name="Perc" HorizontalAlignment="Left" Margin="93,222,0,0" VerticalAlignment="Top" Width="74"/>
         <Button x:Name="Keres" Content="Keres" HorizontalAlignment="Left" Margin="172,223,0,0" VerticalAlignment="Top" Click="Keres_Click"/>
+        <DataGrid x:Name="KeresesEredmeny" Margin="15,248,200,39">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nev" Binding="{Binding Nev}"/>
+                <DataGridTextColumn Header="Hajó Azonositó" Binding="{Binding HajoAzonosito}"/>
+                <DataGridTextColumn Header="Elvitel Órája" Binding="{Binding ElvitelOra}"/>
+                <DataGridTextColumn Header="Elvitel Perce" Binding="{Binding ElvitelPerc}"/>
+                <DataGridTextColumn Header="Visszahozatal órája" Binding="{Binding VisszahozatalOra}"/>
+                <DataGridTextColumn Header="Visszahozatal perce" Binding="{Binding VisszahozatalPerc}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
