@@ -69,5 +69,16 @@ namespace Kajak_Kenu_Grafikus
         {
             return kolcsonzesek.Exists(k => k.HajoAzonosito.Equals(Azon.Text) && k.HajoTipusa.Equals(Tipus.Text) && k.SzemelyekSzama.Equals(Személyes));
         }
+
+        private void SerultKeres_Click(object sender, RoutedEventArgs e)
+        {
+            var serult = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(SerultAzon));
+            if(serult != null)
+            {
+                using StreamWriter sw = new(
+                    path: @$"../../../src/rongalas_{SerultAzon}.txt",
+                    append: false);
+            }
+        }
     }
 }
