@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Kajak_Kenu_Grafikus"
         mc:Ignorable="d"
         Title="MainWindow" Height="744" Width="806">
-    <Grid Margin="0,0,0,-6">
+    <Grid Margin="-4,-4,4,-2">
         <DataGrid x:Name="Kolcsonzesek_Grid" Margin="14,20,14,516">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nev" Binding="{Binding Nev}"/>
@@ -42,14 +42,28 @@
                 <DataGridTextColumn Header="Kölcsönzések száma" Binding="{Binding Value}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="Azon" HorizontalAlignment="Left" Margin="615,530,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181"/>
-        <TextBox x:Name="Személyes" HorizontalAlignment="Left" Margin="615,552,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181"/>
-        <TextBox x:Name="Tipus" HorizontalAlignment="Left" Margin="615,575,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181"/>
-        <Label Content="Azon" HorizontalAlignment="Left" Margin="568,526,0,0" VerticalAlignment="Top"/>
-        <Label Content="Típus" HorizontalAlignment="Left" Margin="568,571,0,0" VerticalAlignment="Top"/>
-        <Label Content="Személyes" HorizontalAlignment="Left" Margin="546,548,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SerultAzon" HorizontalAlignment="Left" Margin="546,645,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
-        <Button x:Name="SerultKeres" Content="Keres" HorizontalAlignment="Left" Margin="615,645,0,0" VerticalAlignment="Top" Click="SerultKeres_Click"/>
-        <Button Content="Keres" HorizontalAlignment="Left" Margin="546,598,0,0" VerticalAlignment="Top" Width="250" Click="HajotKeres_Click"/>
+        <TextBox x:Name="SerultAzon" HorizontalAlignment="Left" Margin="682,539,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+        <Button x:Name="SerultKeres" Content="Keres" HorizontalAlignment="Left" Margin="747,539,0,0" VerticalAlignment="Top" Click="SerultKeres_Click"/>
+        <Label Content="Név: " HorizontalAlignment="Left" Margin="270,531,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="FelvitelNev" HorizontalAlignment="Left" Margin="312,535,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="FelvitelAzon" HorizontalAlignment="Left" Margin="341,558,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="FelvitelKezdesOra" HorizontalAlignment="Left" Margin="342,589,0,0" VerticalAlignment="Top" Width="48"/>
+        <ComboBox x:Name="FelvitelKezdesPerc" HorizontalAlignment="Left" Margin="543,591,0,0" VerticalAlignment="Top" Width="52"/>
+        <ComboBox x:Name="FelvitelVegeOra" HorizontalAlignment="Left" Margin="375,620,0,0" VerticalAlignment="Top" Width="49"/>
+        <ComboBox x:Name="FelvitelVegePerc" HorizontalAlignment="Left" Margin="543,620,0,0" VerticalAlignment="Top" Width="52"/>
+        <ComboBox x:Name="FelvitelHajoTipus" HorizontalAlignment="Left" Margin="375,647,0,0" VerticalAlignment="Top" Width="49"/>
+        <Label Content="Azonosító:" HorizontalAlignment="Left" Margin="270,555,0,0" VerticalAlignment="Top"/>
+        <Label Content="Elvitel óra:" HorizontalAlignment="Left" Margin="270,585,0,0" VerticalAlignment="Top"/>
+        <Label Content="Elvitel perc:" HorizontalAlignment="Left" Margin="468,591,0,0" VerticalAlignment="Top"/>
+        <Label Content="Visszahozatal óra:" HorizontalAlignment="Left" Margin="270,616,0,0" VerticalAlignment="Top"/>
+        <Label Content="Visszahozatal perc:" HorizontalAlignment="Left" Margin="429,616,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hajó típusa:" HorizontalAlignment="Left" Margin="294,645,0,0" VerticalAlignment="Top"/>
+        <Label Content="Személyek száma:" HorizontalAlignment="Left" Margin="437,647,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="FelvitelSzemelyekSzama" HorizontalAlignment="Left" Margin="543,647,0,0" VerticalAlignment="Top" Width="52"/>
+        <Button x:Name="Felvitel" Content="Felvitel" HorizontalAlignment="Left" Margin="437,534,0,0" VerticalAlignment="Top" Click="Felvitel_Click"/>
+
+
+
+
     </Grid>
 </Window>

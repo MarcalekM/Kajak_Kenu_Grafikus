@@ -31,8 +31,25 @@ namespace Kajak_Kenu_Grafikus
             while (!sr.EndOfStream) kolcsonzesek.Add(new(sr.ReadLine()));
             foreach(var kolcsonzes in kolcsonzesek) Kolcsonzesek_Grid.Items.Add(kolcsonzes);
 
-            for(int i = 0; i < 24; i++) Ora.Items.Add(i);
-            for (int i = 0; i < 60; i++) Perc.Items.Add(i);
+            for(int i = 0; i < 24; i++)
+            {
+                Ora.Items.Add(i);
+                FelvitelKezdesOra.Items.Add(i);
+                FelvitelVegeOra.Items.Add(i);
+            }
+            for (int i = 0; i < 60; i++)
+            {
+                Perc.Items.Add(i);
+                FelvitelKezdesPerc.Items.Add(i);
+                FelvitelVegePerc.Items.Add(i);
+            }
+
+            for (int i = 1; i < 11; i++) FelvitelSzemelyekSzama.Items.Add(i);
+
+            FelvitelAzon.ItemsSource = kolcsonzesek.Select(k => k.HajoAzonosito).Distinct().ToList();
+
+            FelvitelHajoTipus.Items.Add("kajak");
+            FelvitelHajoTipus.Items.Add("kenu");
 
             foreach (var kolcsonzes in kolcsonzesek) f13.Items.Add(kolcsonzes.ToString());
 
@@ -65,23 +82,35 @@ namespace Kajak_Kenu_Grafikus
             KolcsonzesekMara.Visibility = Visibility.Visible;
         }
 
-        public bool HajotKeres_Click(object sender, RoutedEventArgs e)
+        private bool HajoKereso(int Azon, string Tipus, int Személyes)
         {
-            var letezik = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(Azon.Text) && k.HajoTipusa.Equals(Tipus.Text) && k.SzemelyekSzama.Equals(Személyes)).ToList();
+            var letezik = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(Azon) && k.HajoTipusa.Equals(Tipus) && k.SzemelyekSzama.Equals(Személyes)).ToList();
             bool eredmeny = (letezik.Count() > 0 ? true : false);
             return eredmeny;
         }
 
-        private void SerultKeres_Click(object sender, RoutedEventArgs e)
+        private void SerultKereses()
         {
             var serult = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(SerultAzon.Text)).ToList();
-            if(serult.Count() != 0)
+            using StreamWriter sw = new(
+                path: @$"../../../src/rongalas_{SerultAzon.Text}.txt",
+                append: false);
+            foreach (var item in serult) sw.WriteLine($"{item.Nev} - { item.KolcsonzesIdotartam()}");
+        }
+
+        private void SerultKeres_Click(object sender, RoutedEventArgs e)
+        {
+            SerultKereses();
+        }
+
+        private void Felvitel_Click(object sender, RoutedEventArgs e)
+        {
+            if (HajoKereso(int.Parse(FelvitelAzon.Text) , FelvitelHajoTipus.Text, int.Parse(FelvitelSzemelyekSzama.Text)))
             {
-                using StreamWriter sw = new(
-                    path: $@"../../../src/rongalas_{SerultAzon.Text}.txt",
-                    append: false);
-                foreach (var item in serult) sw.WriteLine($"{item.Nev} - {item.KolcsonzesIdotartam()}");
+                kolcsonzesek.Add(new Kolcsonzes($"{FelvitelNev.Text};{FelvitelAzon.Text};{FelvitelHajoTipus.Text};{int.Parse(FelvitelSzemelyekSzama.Text)};{int.Parse(FelvitelKezdesOra.Text)};{int.Parse(FelvitelKezdesPerc.Text)};{int.Parse(FelvitelVegeOra.Text)};{int.Parse(FelvitelVegePerc.Text)}"));
+                Kolcsonzesek_Grid.ItemsSource = kolcsonzesek;
             }
+            else MessageBox.Show("Nincs ilyen hajó!");
         }
     }
 }
