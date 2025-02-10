@@ -91,11 +91,12 @@ namespace Kajak_Kenu_Grafikus
 
         private void SerultKereses()
         {
-            var serult = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(SerultAzon.Text)).ToList();
+            var serultek = kolcsonzesek.Where(k => k.HajoAzonosito.Equals(int.Parse(SerultAzon.Text))).ToList();
             using StreamWriter sw = new(
                 path: @$"../../../src/rongalas_{SerultAzon.Text}.txt",
                 append: false);
-            foreach (var item in serult) sw.WriteLine($"{item.Nev} - { item.KolcsonzesIdotartam()}");
+            foreach (var item in serultek) sw.WriteLine($"{item.Nev} - { item.KolcsonzesIdotartam()}");
+            SerultAzon.Text = "";
         }
 
         private void SerultKeres_Click(object sender, RoutedEventArgs e)
